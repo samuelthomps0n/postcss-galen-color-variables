@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/samuelthomps0n/postcss-galen-variables.git"
+    "url": "git+ssh://git@bitbucket.org/samuelthomps0n/postcss-galen-color-variables.git"
   },
   "keywords": [
     "PostCSS",
@@ -17,5 +17,11 @@
   ],
   "author": "Samuel Thompson <sam@samuelthompson.co.uk>",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/samuelthomps0n/postcss-galen-color-variables#readme"
+  "homepage": "https://bitbucket.org/samuelthomps0n/postcss-galen-color-variables#readme",
+  "dependencies": {
+    "parse-color": "^1.0.0",
+    "postcss": "^6.0.6",
+    "postcss-color-function": "^4.0.0",
+    "postcss-simple-vars": "^4.0.0"
+  }
 }
