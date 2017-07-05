@@ -11,7 +11,7 @@ var colorVars    = [];
 var colorVarsCss = '';
 
 var sourceCssStream = lineReader.createInterface({
-    input: fs.createReadStream(args[0]);
+    input: fs.createReadStream(args[0])
 })
 var sourceCss = fs.readFileSync(args[0]);
 
