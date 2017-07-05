@@ -1,0 +1,21 @@
+{
+  "name": "postcss-galen-color-variables",
+  "version": "0.0.1",
+  "description": "Export PostCSS color variables to Galen Test Suite syntax",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/samuelthomps0n/postcss-galen-variables.git"
+  },
+  "keywords": [
+    "PostCSS",
+    "Galen",
+    "Testing"
+  ],
+  "author": "Samuel Thompson <sam@samuelthompson.co.uk>",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/samuelthomps0n/postcss-galen-color-variables#readme"
+}
