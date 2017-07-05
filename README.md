@@ -13,13 +13,13 @@ There are a few variables that can be set from the comment line when running thi
 
 `node postcss-galen-variables [source] [destination] [label]`
 
-## Source
+### Source
 The source is the relative location of your PostCSS file containing the variables you wish to convert to Galen color variables
 
-## Destination
+### Destination
 The destination is the relative location where you like the gspec file to be written
 
-## Label
+### Label
 The label allows you to create a template for the variables using the `{key}` and `{type}` parameters. Key is the variable name and type is the color type, eg Hex, RGBA and RGB. An exmaple of a label would be:
 
 ```
