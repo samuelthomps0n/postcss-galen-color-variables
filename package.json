@@ -4,7 +4,7 @@
   "description": "Export PostCSS color variables to Galen Test Suite syntax",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test/test.js"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,15 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/samuelthomps0n/postcss-galen-color-variables#readme",
   "dependencies": {
+    "Q": "0.0.1",
     "parse-color": "^1.0.0",
     "postcss": "^6.0.6",
     "postcss-color-function": "^4.0.0",
-    "postcss-simple-vars": "^4.0.0"
+    "postcss-simple-vars": "^4.0.0",
+    "q": "^1.5.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.1.1"
   }
 }
