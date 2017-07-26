@@ -1,5 +1,5 @@
 @set 
-    colorVariableRGB  rgb(36,36,36)
-    colorVariableRGBA  rgba(36,36,36,1)
+    colorVariableRGB  rgb(36, 36, 36)
+    colorVariableRGBA  rgba(36, 36, 36, 1)
     colorVariableHEX  #242424
 

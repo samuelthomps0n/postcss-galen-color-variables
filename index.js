@@ -27,6 +27,7 @@ module.exports = {
 				colorVars[currentLine[0].slice(0, -1).substring(1)] = currentLine[0].slice(0, -1);
 				colorVarsCss += currentLine[0].substring(1) + ' ' + currentLine[0].slice(0, -1) + ";\n";
 			}
+            
 		});
 
 		sourceCssStream.on('close', function() {
@@ -48,8 +49,8 @@ module.exports = {
 			gspec.once('open', function(fd) {
 				gspec.write('@set \n');
 				Object.keys(colorsArray).forEach(function (key) {
-				   gspec.write('    ' + outputVariableNames(key, 'RGB') + '  rgb(' + colorParser(colorsArray[key]).rgb + ')' + '\n');
-				   gspec.write('    ' + outputVariableNames(key, 'RGBA') + '  rgba(' + colorParser(colorsArray[key]).rgba + ')' + '\n');
+				   gspec.write('    ' + outputVariableNames(key, 'RGB') + '  rgb(' + colorParser(colorsArray[key]).rgb.join(', ') + ')' + '\n');
+				   gspec.write('    ' + outputVariableNames(key, 'RGBA') + '  rgba(' + colorParser(colorsArray[key]).rgba.join(', ') + ')' + '\n');
 				   gspec.write('    ' + outputVariableNames(key, 'HEX') + '  ' + colorParser(colorsArray[key]).hex + '\n\n');
 				});
 				gspec.end();
