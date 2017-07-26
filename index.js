@@ -22,15 +22,19 @@ module.exports = {
 
 
 		sourceCssStream.on('line', function(line) {
-			let currentLine = line.split(' ');
+			let currentLine = line.trim().split(' ');
 			if(currentLine[0].startsWith("--")) {
-				colorVars[currentLine[0].slice(0, -1).substring(1)] = currentLine[0].slice(0, -1);
-				colorVarsCss += currentLine[0].substring(1) + ' ' + currentLine[0].slice(0, -1) + ";\n";
-			}
-            
+				colorVars[currentLine[0].slice(0, -1).substring(2)] = currentLine[0].slice(0, -1);
+				colorVarsCss += currentLine[0].substring(2) + ' ' + currentLine[1].slice(0, -1) + ";\n";
+			};
+            if(currentLine[0].startsWith("$")) {
+                colorVars[currentLine[0].slice(0, -1)] = currentLine[0].slice(0, -1);
+                colorVarsCss += currentLine[0].substring(1) + ' ' + currentLine[0].slice(0, -1) + ";\n";
+            };
 		});
 
 		sourceCssStream.on('close', function() {
+
 			let compiledCss = compilePostCSS(sourceCss + colorVarsCss);
 			let colorsArray = extractColours(compiledCss);
 
@@ -73,11 +77,12 @@ module.exports = {
 
 		function extractColours(css) {
 			let result = [];
+
 			let stringCss = css.replace(/\/\*(?:(?!\*\/)[\s\S])*\*\/+/g, '')
-							.replace(/^\s*[\r\n]/gm, '')
-							.replace(/;/g, "")
-							.replace(/: /g, "=")
-							.replace(/(?:\r\n|\r|\n)/g, '|');
+                            .replace(/\:root {([^}]+)\}/gm, '') // Strip out :root {}
+							.replace(/;/g, "") // Strip all ;
+							.replace(/: /g, "=") // Strip all : and replace with =
+							.replace(/(?:\r\n|\r|\n)/g, '|'); // Strip all line breaks and relace with |
 
 			stringCss.split('|').forEach(function(x) {
 				let array = x.split('=');

@@ -1,3 +1,5 @@
 :root {
-    --variable: #242424;
+    --variableName: #242424;
 }
+
+$oldVariable: #343434;
