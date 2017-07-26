@@ -1,4 +1,5 @@
 @set 
+    colorTransparent  rgba(0, 0, 0, 0)
     colorVariableNameRGB  rgb(36, 36, 36)
     colorVariableNameRGBA  rgba(36, 36, 36, 1)
     colorVariableNameHEX  #242424

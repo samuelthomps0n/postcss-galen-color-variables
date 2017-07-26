@@ -52,7 +52,7 @@ module.exports = {
 
 			gspec.once('open', function(fd) {
 				gspec.write('@set \n');
-				gpsec.write('colorTransparent  rgba(0, 0, 0, 0) \n');
+				gspec.write('    colorTransparent  rgba(0, 0, 0, 0)\n');
 				Object.keys(colorsArray).forEach(function (key) {
 				   gspec.write('    ' + outputVariableNames(key, 'RGB') + '  rgb(' + colorParser(colorsArray[key]).rgb.join(', ') + ')' + '\n');
 				   gspec.write('    ' + outputVariableNames(key, 'RGBA') + '  rgba(' + colorParser(colorsArray[key]).rgba.join(', ') + ')' + '\n');
