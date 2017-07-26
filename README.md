@@ -29,7 +29,9 @@ The label allows you to create a template for the variables using the `{key}` an
 color-{key}{type}
 ```
 
-#### Input
+## Example
+
+#### Source CSS
 ```
 // CSS Variables
 :root {
