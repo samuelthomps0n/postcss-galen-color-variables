@@ -1,6 +1,6 @@
 {
   "name": "postcss-galen-color-variables",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Export PostCSS color variables to Galen Test Suite syntax",
   "main": "index.js",
   "scripts": {
