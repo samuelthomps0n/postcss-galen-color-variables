@@ -27,10 +27,10 @@ module.exports = {
 				colorVars[currentLine[0].slice(0, -1).substring(2)] = currentLine[0].slice(0, -1);
 				colorVarsCss += currentLine[0].substring(2) + ' ' + currentLine[1].slice(0, -1) + ";\n";
 			};
-            if(currentLine[0].startsWith("$")) {
-                colorVars[currentLine[0].slice(0, -1)] = currentLine[0].slice(0, -1);
-                colorVarsCss += currentLine[0].substring(1) + ' ' + currentLine[0].slice(0, -1) + ";\n";
-            };
+			if(currentLine[0].startsWith("$")) {
+				colorVars[currentLine[0].slice(0, -1)] = currentLine[0].slice(0, -1);
+				colorVarsCss += currentLine[0].substring(1) + ' ' + currentLine[0].slice(0, -1) + ";\n";
+			};
 		});
 
 		sourceCssStream.on('close', function() {
@@ -52,6 +52,7 @@ module.exports = {
 
 			gspec.once('open', function(fd) {
 				gspec.write('@set \n');
+				gpsec.write('colorTransparent  rgba(0, 0, 0, 0) \n');
 				Object.keys(colorsArray).forEach(function (key) {
 				   gspec.write('    ' + outputVariableNames(key, 'RGB') + '  rgb(' + colorParser(colorsArray[key]).rgb.join(', ') + ')' + '\n');
 				   gspec.write('    ' + outputVariableNames(key, 'RGBA') + '  rgba(' + colorParser(colorsArray[key]).rgba.join(', ') + ')' + '\n');
@@ -79,7 +80,7 @@ module.exports = {
 			let result = [];
 
 			let stringCss = css.replace(/\/\*(?:(?!\*\/)[\s\S])*\*\/+/g, '')
-                            .replace(/\:root {([^}]+)\}/gm, '') // Strip out :root {}
+							.replace(/\:root {([^}]+)\}/gm, '') // Strip out :root {}
 							.replace(/;/g, "") // Strip all ;
 							.replace(/: /g, "=") // Strip all : and replace with =
 							.replace(/(?:\r\n|\r|\n)/g, '|'); // Strip all line breaks and relace with |
