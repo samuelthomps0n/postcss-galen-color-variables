@@ -1,5 +1,6 @@
 :root {
     --variableName: #242424;
+    --variableNameFunc: color(var(--variableName) tint(80%));
 }
 
 $oldVariable: #343434;

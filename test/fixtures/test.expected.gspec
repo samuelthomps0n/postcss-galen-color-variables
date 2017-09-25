@@ -4,6 +4,10 @@
     colorVariableNameRGBA  rgba(36, 36, 36, 1)
     colorVariableNameHEX  #242424
 
+    colorVariableNameFuncRGB  rgb(211, 211, 211)
+    colorVariableNameFuncRGBA  rgba(211, 211, 211, 1)
+    colorVariableNameFuncHEX  #d3d3d3
+
     colorOldVariableRGB  rgb(52, 52, 52)
     colorOldVariableRGBA  rgba(52, 52, 52, 1)
     colorOldVariableHEX  #343434

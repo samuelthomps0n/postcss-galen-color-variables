@@ -2,7 +2,7 @@ const fs                = require("fs");
 const Q                 = require('q');
 const postcss           = require("postcss");
 const variablesFunction = require('postcss-simple-vars');
-const colorFunction     = require("postcss-color-function");
+const cssNext			= require("postcss-cssnext");
 const lineReader        = require("readline");
 const colorParser       = require('parse-color');
 
@@ -24,10 +24,23 @@ module.exports = {
 		sourceCssStream.on('line', function(line) {
 			let currentLine = line.trim().split(' ');
 			if(currentLine[0].startsWith("--")) {
-				colorVars[currentLine[0].slice(0, -1).substring(2)] = currentLine[0].slice(0, -1);
-				colorVarsCss += currentLine[0].substring(2) + ' ' + currentLine[1].slice(0, -1) + ";\n";
-			};
-			if(currentLine[0].startsWith("$")) {
+
+				if(currentLine[1].startsWith("#")) {
+					
+					colorVars[currentLine[0].slice(0, -1).substring(2)] = currentLine[0].slice(0, -1);
+					colorVarsCss += currentLine[0].substring(2) + ' ' + currentLine[1].slice(0, -1) + ";\n";
+
+				} else {
+
+					// Remove the declared
+					variableName = currentLine[0]; 
+					delete currentLine[0];
+
+					colorVars[variableName.substring(2)] = currentLine.join(' ');
+					colorVarsCss += variableName.substring(2) + ' ' + currentLine.join(' ') + "\n";
+
+				}
+			} else if(currentLine[0].startsWith("$")) {
 				colorVars[currentLine[0].slice(0, -1)] = currentLine[0].slice(0, -1);
 				colorVarsCss += currentLine[0].substring(1) + ' ' + currentLine[0].slice(0, -1) + ";\n";
 			};
@@ -54,9 +67,15 @@ module.exports = {
 				gspec.write('@set \n');
 				gspec.write('    colorTransparent  rgba(0, 0, 0, 0)\n');
 				Object.keys(colorsArray).forEach(function (key) {
-				   gspec.write('    ' + outputVariableNames(key, 'RGB') + '  rgb(' + colorParser(colorsArray[key]).rgb.join(', ') + ')' + '\n');
-				   gspec.write('    ' + outputVariableNames(key, 'RGBA') + '  rgba(' + colorParser(colorsArray[key]).rgba.join(', ') + ')' + '\n');
-				   gspec.write('    ' + outputVariableNames(key, 'HEX') + '  ' + colorParser(colorsArray[key]).hex + '\n\n');
+					
+					if(! colorsArray[key].trim().startsWith('#')) {
+						colorValue = '\'' + colorsArray[key].trim() + '\'';
+					}
+					colorValue = colorsArray[key].trim();
+
+				    gspec.write('    ' + outputVariableNames(key, 'RGB') + '  rgb(' + colorParser(colorValue).rgb.join(', ') + ')' + '\n');
+				    gspec.write('    ' + outputVariableNames(key, 'RGBA') + '  rgba(' + colorParser(colorValue).rgba.join(', ') + ')' + '\n');
+				    gspec.write('    ' + outputVariableNames(key, 'HEX') + '  ' + colorParser(colorValue).hex + '\n\n');
 				});
 				gspec.end();
 			});
@@ -67,9 +86,10 @@ module.exports = {
 		}
 
 		function compilePostCSS(css) {
+
 			let output = postcss()
 			.use(variablesFunction())
-			.use(colorFunction())
+			.use(cssNext())
 			.process(css)
 			.css;
 
