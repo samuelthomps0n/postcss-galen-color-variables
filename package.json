@@ -21,7 +21,7 @@
   "dependencies": {
     "parse-color": "^1.0.0",
     "postcss": "^6.0.6",
-    "postcss-color-function": "^4.0.0",
+    "postcss-cssnext": "^2.9.0",
     "postcss-simple-vars": "^4.0.0",
     "q": "^1.5.0"
   },
